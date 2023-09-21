@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
@@ -20,17 +21,15 @@ class NetworkModule {
     fun provideHttpClient(): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
 //        if (BuildConfig.DEBUG) {
-            val httpLoggingInterceptor = HttpLoggingInterceptor()
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            okHttpClient.addInterceptor(httpLoggingInterceptor)
-            okHttpClient.writeTimeout(3, TimeUnit.MINUTES);
-            okHttpClient.connectTimeout(3, TimeUnit.MINUTES);
-            okHttpClient.readTimeout(3, TimeUnit.MINUTES);
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        okHttpClient.addInterceptor(httpLoggingInterceptor)
+        okHttpClient.writeTimeout(3, TimeUnit.MINUTES);
+        okHttpClient.connectTimeout(3, TimeUnit.MINUTES);
+        okHttpClient.readTimeout(3, TimeUnit.MINUTES);
 //        }
         return okHttpClient.build()
     }
-
-
 
     @Provides
     @Singleton
