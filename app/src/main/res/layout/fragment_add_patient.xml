@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_patient.presentation.AddPatientFragment">
+
+    <TextView
+        android:id="@+id/addPatientListTitle"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:text="@string/add_patient"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/patientNameLay"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:hint="@string/patient_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addPatientListTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/patientNameEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/patientAgeLay"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:hint="@string/age"
+        app:layout_constraintEnd_toEndOf="@+id/patientNameLay"
+        app:layout_constraintStart_toStartOf="@+id/patientNameLay"
+        app:layout_constraintTop_toBottomOf="@+id/patientNameLay">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/patientAgeEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/patientGenderLay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:hint="Gender"
+        app:layout_constraintEnd_toEndOf="@+id/patientAgeLay"
+        app:layout_constraintStart_toStartOf="@+id/patientAgeLay"
+        app:layout_constraintTop_toBottomOf="@+id/patientAgeLay">
+
+        <AutoCompleteTextView
+            android:id="@+id/patientGenderEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/uploadToothImgLay"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:hint="@string/upload_image"
+        app:layout_constraintEnd_toEndOf="@+id/patientGenderLay"
+        app:layout_constraintStart_toStartOf="@+id/patientGenderLay"
+        app:layout_constraintTop_toBottomOf="@+id/patientGenderLay"
+        app:startIconDrawable="@drawable/file_upload_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/uploadToothImgEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submitPatient"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        app:layout_constraintEnd_toEndOf="@+id/uploadToothImgLay"
+        app:layout_constraintStart_toStartOf="@+id/uploadToothImgLay"
+        app:layout_constraintTop_toBottomOf="@+id/uploadToothImgLay"
+        android:layout_marginTop="@dimen/_16dp"
+        android:backgroundTint="@color/red_500"
+        android:text="@string/submit"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

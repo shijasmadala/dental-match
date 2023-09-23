@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.example.dentalmatch.home.presentation.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addPatientFragment"
+            app:destination="@id/addPatientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="com.example.dentalmatch.add_patient.presentation.AddPatientFragment"
+        android:label="fragment_add_patient"
+        tools:layout="@layout/fragment_add_patient" />
 </navigation>
