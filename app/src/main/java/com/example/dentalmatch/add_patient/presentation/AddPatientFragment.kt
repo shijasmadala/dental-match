@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.dentalmatch.R
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
 import com.example.dentalmatch.databinding.FragmentAddPatientBinding
@@ -23,6 +24,7 @@ import kotlinx.coroutines.launch
 class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     private lateinit var binding: FragmentAddPatientBinding
     private val viewModel by viewModels<AddPatientViewModel>()
+    private val args: AddPatientFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddPatientBinding.bind(view)
@@ -34,12 +36,21 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     private fun setListners() {
         binding.apply {
             submitPatient.setOnClickListener {
-                val patientModel = PatientModel(
-                    0, patientName = patientNameEdt.text.toString(),
-                    age = patientAgeEdt.text.toString(), gender = patientGenderEdt.text.toString(),
-                    toothCode = uploadToothImgEdt.text.toString()
-                )
-                viewModel.addPatient(patientModel)
+                if (args.patientData != null){
+                    val patientModel = PatientModel(
+                        args.patientData!!.id, patientName = patientNameEdt.text.toString(),
+                        age = patientAgeEdt.text.toString(), gender = patientGenderEdt.text.toString(),
+                        toothCode = uploadToothImgEdt.text.toString()
+                    )
+                    viewModel.updatePatient(patientModel)
+                } else{
+                    val patientModel = PatientModel(
+                        0, patientName = patientNameEdt.text.toString(),
+                        age = patientAgeEdt.text.toString(), gender = patientGenderEdt.text.toString(),
+                        toothCode = uploadToothImgEdt.text.toString()
+                    )
+                    viewModel.addPatient(patientModel)
+                }
             }
         }
     }
@@ -72,6 +83,22 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                         }
 
                         is AddPatientState.AddPatientSuccess -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            findNavController().navigateUp()
+                        }
+
+                        is AddPatientState.UpdatePatientData -> {
+                            binding.apply {
+                                if (it.patientModel != null) {
+                                    patientNameEdt.setText(it.patientModel?.patientName.toString())
+                                    patientAgeEdt.setText(it.patientModel?.age.toString())
+                                    patientGenderEdt.setText(it.patientModel?.gender.toString(),false)
+                                    uploadToothImgEdt.setText(it.patientModel?.toothCode.toString())
+                                }
+                            }
+                        }
+
+                        is AddPatientState.UpdatePatientSuccess -> {
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                             findNavController().navigateUp()
                         }

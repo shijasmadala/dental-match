@@ -1,5 +1,6 @@
 package com.example.dentalmatch.home.data.repository
 
+import com.example.dentalmatch.add_patient.data.mapper.toPatientEntity
 import com.example.dentalmatch.add_patient.data.mapper.toPatientModel
 import com.example.dentalmatch.add_patient.data.source.PatientDao
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
@@ -14,6 +15,12 @@ class HomeRepositoryImpl @Inject constructor(private val patientDao: PatientDao)
             it.map {
                 it.toPatientModel()
             }
+        }
+    }
+
+    override suspend fun deletePatient(patientModel: PatientModel) {
+        kotlin.runCatching {
+            patientDao.deletePatient(patientModel.toPatientEntity())
         }
     }
 }

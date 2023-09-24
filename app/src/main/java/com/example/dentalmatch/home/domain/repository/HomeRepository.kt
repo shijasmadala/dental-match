@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface HomeRepository {
 
     fun showPatients() : Flow<List<PatientModel>>
+
+    suspend fun deletePatient(patientModel: PatientModel)
 }

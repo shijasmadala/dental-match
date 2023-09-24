@@ -27,7 +27,7 @@
             tools:text="Shijas"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,6 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="italic"
             android:layout_marginTop="@dimen/_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/patientName"
@@ -51,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/gender"
             app:layout_constraintStart_toEndOf="@+id/gender"
             app:layout_constraintTop_toTopOf="@+id/gender"
@@ -63,12 +61,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/patientName"
             app:layout_constraintStart_toEndOf="@+id/patientName"
             app:layout_constraintTop_toTopOf="@+id/patientName"
             tools:text="25"
             android:layout_marginLeft="@dimen/_16dp"/>
+
+        <ImageView
+            android:id="@+id/deletePatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_delete_24"
+            app:layout_constraintBottom_toBottomOf="@+id/toothCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/age"
+            android:clickable="true"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

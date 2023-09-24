@@ -17,4 +17,14 @@ class AddPatientRepositoryImpl @Inject constructor(private val patientDao: Patie
 
         }
     }
+
+    override suspend fun updatePatient(patientModel: PatientModel) {
+        kotlin.runCatching {
+            patientDao.updatePatient(patientModel.toPatientEntity())
+        }.onSuccess {
+
+        }.onFailure {
+
+        }
+    }
 }

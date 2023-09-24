@@ -4,4 +4,6 @@ import com.example.dentalmatch.add_patient.domain.model.PatientModel
 
 interface AddPatientRepository {
     suspend fun insertNotes(patientModel: PatientModel)
+
+    suspend fun updatePatient(patientModel: PatientModel)
 }
