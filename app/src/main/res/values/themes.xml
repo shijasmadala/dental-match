@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DentalMatch" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/red_500</item>
+         <item name="colorPrimaryDark">@color/red_700</item>
     </style>
 
     <style name="Theme.DentalMatch" parent="Base.Theme.DentalMatch" />
