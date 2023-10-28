@@ -14,6 +14,7 @@
             android:id="@+id/action_homeFragment_to_addPatientFragment"
             app:destination="@id/addPatientFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addPatientFragment"
         android:name="com.example.dentalmatch.add_patient.presentation.AddPatientFragment"
@@ -23,5 +24,15 @@
             android:name="patientData"
             app:argType="com.example.dentalmatch.add_patient.domain.model.PatientModel"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_addPatientFragment_to_imageCaptureFragment"
+            app:destination="@id/imageCaptureFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/imageCaptureFragment"
+        android:name="com.example.dentalmatch.image_handling.presentation.ImageCaptureFragment"
+        android:label="fragment_image_capture"
+        tools:layout="@layout/fragment_image_capture" />
+
 </navigation>

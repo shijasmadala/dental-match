@@ -82,7 +82,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-android-compiler:2.47")
 
-//    // Room
+    // Room
     implementation("androidx.room:room-ktx:2.5.2")
     kapt("androidx.room:room-compiler:2.5.2")
 
@@ -102,4 +102,20 @@ dependencies {
 
     // Sandwich
     implementation("com.github.skydoves:sandwich:1.3.7")
+
+    // CameraX
+    val cameraxVersion = "1.2.3"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-video:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-extensions:$cameraxVersion")
+
+    // Coil Image Loader
+    implementation("io.coil-kt:coil:0.9.1")
+
+    // Image ZoomView
+    implementation("com.jsibbold:zoomage:1.3.1")
+
 }
