@@ -18,9 +18,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.api.load
+import androidx.navigation.fragment.navArgs
 import com.example.dentalmatch.R
-import com.example.dentalmatch.common.util.Constants.CONST_CAPTURED_IMAGE
+import com.example.dentalmatch.common.util.Constants.FROM_PATIENT
+import com.example.dentalmatch.common.util.Constants.FROM_UPLOAD
 import com.example.dentalmatch.common.util.Constants.TEST_TAG
 import com.example.dentalmatch.databinding.FragmentImageCaptureBinding
 import com.google.android.material.snackbar.Snackbar
@@ -41,6 +42,7 @@ class ImageCaptureFragment : Fragment(R.layout.fragment_image_capture) {
     private var imageCapture: ImageCapture? = null
     private lateinit var imgCaptureExecutor: ExecutorService
     private var capturedImageFile: File? = null
+    private val args: ImageCaptureFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -85,11 +87,18 @@ class ImageCaptureFragment : Fragment(R.layout.fragment_image_capture) {
         }
 
         btnContinue.setOnClickListener {
-            findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                CONST_CAPTURED_IMAGE,
-                capturedImageFile
-            )
-            findNavController().popBackStack()
+            val croppedBitmap = imageCropView.crop()
+            croppedBitmap?.let { bitmap ->
+                if (args.from == FROM_PATIENT) {
+                    findNavController().navigate(
+                        ImageCaptureFragmentDirections.actionImageCaptureFragmentToColorMatchingFragment(
+                            bitmap
+                        )
+                    )
+                } else if (args.from == FROM_UPLOAD) {
+                    // TODO: Navigate to ColorMatchingFragment by popUpTo UploadFragment
+                }
+            }
         }
     }
 
@@ -153,7 +162,6 @@ class ImageCaptureFragment : Fragment(R.layout.fragment_image_capture) {
                         ).show()
                         Log.d(TEST_TAG, "Error capturing photo:$exception")
                     }
-
                 })
         }
     }
@@ -161,7 +169,7 @@ class ImageCaptureFragment : Fragment(R.layout.fragment_image_capture) {
     private fun setCapturedImage(file: File) = binding.apply {
         capturedImageFile = file
         groupPreview.isVisible = true
-        imgCapturedImage.load(capturedImageFile)
+        imageCropView.extensions().load(file)
     }
 
     private fun animateFlash() {
