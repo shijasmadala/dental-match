@@ -28,16 +28,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgCapturedImage"
+    <com.lyft.android.scissors.CropView
+        android:id="@+id/imageCropView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:cropviewViewportRatio="1"
+        android:background="@color/black"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContinue"
@@ -45,23 +41,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_32dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/green_700"
         app:icon="@drawable/baseline_arrow_right_alt_24"
-        app:iconSize="32sp"
-        app:iconTint="@color/black"
+        app:iconSize="40dp"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCancel"
-        style="@style/Widget.Material3.Button.IconButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16dp"
-        android:background="@null"
-        android:backgroundTint="@null"
-        app:icon="@drawable/baseline_close_24"
-        app:iconSize="24sp"
+        android:text="Retake"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red_700"
+        app:icon="@drawable/baseline_refresh_24"
         app:iconTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,6 +73,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="imgCapturedImage, btnContinue, btnCancel" />
+        app:constraint_referenced_ids="imageCropView, btnContinue, btnCancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

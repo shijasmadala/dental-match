@@ -27,12 +27,36 @@
         <action
             android:id="@+id/action_addPatientFragment_to_imageCaptureFragment"
             app:destination="@id/imageCaptureFragment" />
+        <action
+            android:id="@+id/action_addPatientFragment_to_colorMatchingFragment"
+            app:destination="@id/colorMatchingFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/imageCaptureFragment"
         android:name="com.example.dentalmatch.image_handling.presentation.ImageCaptureFragment"
         android:label="fragment_image_capture"
-        tools:layout="@layout/fragment_image_capture" />
+        tools:layout="@layout/fragment_image_capture" >
+        <action
+            android:id="@+id/action_imageCaptureFragment_to_colorMatchingFragment"
+            app:destination="@id/colorMatchingFragment"
+            app:popUpTo="@id/addPatientFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/colorMatchingFragment"
+        android:name="com.example.dentalmatch.image_handling.presentation.ColorPickerFragment"
+        android:label="fragment_color_matching"
+        tools:layout="@layout/fragment_color_picker" >
+        <!--<argument android:name="capturedImageFile"
+            app:argType="java.io.File" />-->
+        <argument
+            android:name="croppedBitmap"
+            app:argType="android.graphics.Bitmap" />
+    </fragment>
 
 </navigation>

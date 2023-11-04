@@ -15,8 +15,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.dentalmatch.R
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
-import com.example.dentalmatch.common.util.Constants.CONST_CAPTURED_IMAGE
+import com.example.dentalmatch.common.util.Constants.CONST_SELECTED_COLOR
+import com.example.dentalmatch.common.util.Constants.FROM_PATIENT
 import com.example.dentalmatch.common.util.Constants.TEST_TAG
+import com.example.dentalmatch.common.util.toHexColor
 import com.example.dentalmatch.databinding.FragmentAddPatientBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -63,7 +65,9 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
 
             uploadToothImgEdt.setOnClickListener {
                 findNavController().navigate(
-                    AddPatientFragmentDirections.actionAddPatientFragmentToImageCaptureFragment()
+                    AddPatientFragmentDirections.actionAddPatientFragmentToImageCaptureFragment(
+                        FROM_PATIENT
+                    )
                 )
             }
         }
@@ -124,14 +128,11 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     }
 
     private fun observeCapturedImage() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<File>(CONST_CAPTURED_IMAGE)?.observe(
-            viewLifecycleOwner) { result ->
-            if (result != null) {
-                Log.d(TEST_TAG, "Returned image uri: ${result.toUri()}")
-                capturedImageFile = result
-
-                val path = result.toUri().toString()
-                binding.uploadToothImgEdt.setText(path.substring(path.lastIndexOf(File.separator)+1))
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(CONST_SELECTED_COLOR)?.observe(
+            viewLifecycleOwner) { selectedColor ->
+            if (selectedColor != null) {
+                Log.d(TEST_TAG, "Returned color in int: $selectedColor")
+                binding.uploadToothImgEdt.setText(selectedColor.toHexColor())
             }
         }
     }
