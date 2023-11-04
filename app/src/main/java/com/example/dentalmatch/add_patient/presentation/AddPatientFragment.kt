@@ -2,11 +2,10 @@ package com.example.dentalmatch.add_patient.presentation
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +22,6 @@ import com.example.dentalmatch.databinding.FragmentAddPatientBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
 
 @AndroidEntryPoint
 class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
@@ -31,7 +29,6 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     private lateinit var binding: FragmentAddPatientBinding
     private val viewModel by viewModels<AddPatientViewModel>()
     private val args: AddPatientFragmentArgs by navArgs()
-    private var capturedImageFile: File? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,17 +43,21 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     private fun setListeners() {
         binding.apply {
             submitPatient.setOnClickListener {
-                if (args.patientData != null){
+                if (args.patientData != null) {
                     val patientModel = PatientModel(
-                        args.patientData!!.id, patientName = patientNameEdt.text.toString(),
-                        age = patientAgeEdt.text.toString(), gender = patientGenderEdt.text.toString(),
+                        args.patientData!!.id,
+                        patientName = patientNameEdt.text.toString(),
+                        age = patientAgeEdt.text.toString(),
+                        gender = patientGenderEdt.text.toString(),
                         toothCode = uploadToothImgEdt.text.toString()
                     )
                     viewModel.updatePatient(patientModel)
-                } else{
+                } else {
                     val patientModel = PatientModel(
-                        0, patientName = patientNameEdt.text.toString(),
-                        age = patientAgeEdt.text.toString(), gender = patientGenderEdt.text.toString(),
+                        0,
+                        patientName = patientNameEdt.text.toString(),
+                        age = patientAgeEdt.text.toString(),
+                        gender = patientGenderEdt.text.toString(),
                         toothCode = uploadToothImgEdt.text.toString()
                     )
                     viewModel.addPatient(patientModel)
@@ -109,7 +110,10 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                                 if (it.patientModel != null) {
                                     patientNameEdt.setText(it.patientModel.patientName.toString())
                                     patientAgeEdt.setText(it.patientModel.age.toString())
-                                    patientGenderEdt.setText(it.patientModel.gender.toString(),false)
+                                    patientGenderEdt.setText(
+                                        it.patientModel.gender.toString(),
+                                        false
+                                    )
                                     uploadToothImgEdt.setText(it.patientModel.toothCode.toString())
                                 }
                             }
@@ -128,8 +132,11 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
     }
 
     private fun observeCapturedImage() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(CONST_SELECTED_COLOR)?.observe(
-            viewLifecycleOwner) { selectedColor ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(
+            CONST_SELECTED_COLOR
+        )?.observe(
+            viewLifecycleOwner
+        ) { selectedColor ->
             if (selectedColor != null) {
                 Log.d(TEST_TAG, "Returned color in int: $selectedColor")
                 binding.uploadToothImgEdt.setText(selectedColor.toHexColor())
