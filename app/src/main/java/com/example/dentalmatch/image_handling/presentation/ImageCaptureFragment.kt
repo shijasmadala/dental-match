@@ -96,7 +96,9 @@ class ImageCaptureFragment : Fragment(R.layout.fragment_image_capture) {
                         )
                     )
                 } else if (args.from == FROM_UPLOAD) {
-                    // TODO: Navigate to ColorMatchingFragment by popUpTo UploadFragment
+                    findNavController().navigate(ImageCaptureFragmentDirections.actionImageCaptureFragmentToColorMatchingFragment2(
+                        bitmap
+                    ))
                 }
             }
         }

@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.dentalmatch.R
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
+import com.example.dentalmatch.common.util.Constants
 import com.example.dentalmatch.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -78,7 +79,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPati
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.uploadImage -> {
-
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToUploadImageFragment()
+                            )
                         }
                     }
                     true
