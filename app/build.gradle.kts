@@ -114,8 +114,17 @@ dependencies {
 
     // Coil Image Loader
     implementation("io.coil-kt:coil:0.9.1")
+    implementation("com.squareup.picasso:picasso:2.5.2")
 
     // Image ZoomView
     implementation("com.jsibbold:zoomage:1.3.1")
 
+    // Color chooser
+    implementation("com.github.madrapps:eyedropper:1.1.0")
+
+    // CropView
+    implementation("com.lyft:scissors:1.1.1")
+
+    // Skydoves color picker
+    implementation("com.github.skydoves:colorpickerpreference:2.0.6")
 }
