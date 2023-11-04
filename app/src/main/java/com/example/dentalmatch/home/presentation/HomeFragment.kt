@@ -2,6 +2,7 @@ package com.example.dentalmatch.home.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -69,6 +70,20 @@ class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPati
                         null
                     )
                 )
+            }
+
+            menuPopUp.setOnClickListener {
+                val popupMenu = PopupMenu(requireContext(), binding.menuPopUp)
+                popupMenu.menuInflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.uploadImage -> {
+
+                        }
+                    }
+                    true
+                }
+                popupMenu.show()
             }
         }
     }
