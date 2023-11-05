@@ -19,7 +19,7 @@ import com.example.dentalmatch.common.util.Constants.FROM_PATIENT
 import com.example.dentalmatch.common.util.Constants.TEST_TAG
 import com.example.dentalmatch.common.util.toHexColor
 import com.example.dentalmatch.databinding.FragmentAddPatientBinding
-import com.example.dentalmatch.image_handling.presentation.color_matching.ColorMatcherDialog
+import com.example.dentalmatch.image_handling.presentation.color_matcher.ColorMatcherDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.dentalmatch.image_handling.presentation.color_matching
+package com.example.dentalmatch.image_handling.presentation.color_matcher
 
 import android.animation.Animator
 import android.app.Dialog
@@ -12,11 +12,20 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.dentalmatch.databinding.DialogColorMatcherBinding
+import com.example.dentalmatch.upload_image.domain.ColorCodeModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
 
     private lateinit var binding: DialogColorMatcherBinding
+    private val viewModel by viewModels<ColorMatcherViewModel>()
+    private var showSuccessGroup: Boolean? = null
     private var matchingColor: Int? = null
 
     override fun onCreateView(
@@ -27,6 +36,7 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
         binding = DialogColorMatcherBinding.inflate(inflater, container, false)
 
         init()
+        observeState()
         setListeners()
 
         return binding.root
@@ -40,19 +50,47 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
     }
 
     private fun init() {
-        binding.tvLoadingText.text = "Selected color: $selectedColor"
+//        binding.tvLoadingText.text = "Selected color: $selectedColor"
     }
 
     private fun setListeners() = binding.apply {
         lottieLoader.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
             override fun onAnimationEnd(animation: Animator) {
-                groupLoader.isVisible = false
-                groupData.isVisible = true
+                showSuccessGroup?.let { flag ->
+                    groupLoader.isVisible = false
+                    if (flag)
+                        groupData.isVisible = true
+                    else {
+                        // TODO: Show the error dialog here
+                    }
+                }
             }
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
         })
+    }
+
+    private fun observeState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collectLatest {
+                    when (it) {
+                        is ColorMatcherState.SuccessColorsList -> handleColorsListSuccess(it.colorsList)
+                        is ColorMatcherState.Error -> handleColorsListError(it.message)
+                        else -> Unit
+                    }
+                }
+            }
+        }
+    }
+
+    private fun handleColorsListSuccess(colorsList: List<ColorCodeModel>) {
+        showSuccessGroup = true
+    }
+
+    private fun handleColorsListError(errorMessage: String) {
+        showSuccessGroup = false
     }
 
     private fun customizeDialog(dialog: Dialog) {

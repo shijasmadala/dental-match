@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/black"
-    tools:context=".image_handling.presentation.ImageCaptureFragment">
+    tools:context=".image_handling.presentation.image_capture.ImageCaptureFragment">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/preview"

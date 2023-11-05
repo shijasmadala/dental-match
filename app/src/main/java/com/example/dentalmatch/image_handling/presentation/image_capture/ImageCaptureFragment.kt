@@ -1,4 +1,4 @@
-package com.example.dentalmatch.image_handling.presentation
+package com.example.dentalmatch.image_handling.presentation.image_capture
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

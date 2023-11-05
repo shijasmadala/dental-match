@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".image_handling.presentation.ColorPickerFragment">
+    tools:context=".image_handling.presentation.color_picker.ColorPickerFragment">
 
     <com.skydoves.colorpickerview.ColorPickerView
         android:id="@+id/colorPickerView"

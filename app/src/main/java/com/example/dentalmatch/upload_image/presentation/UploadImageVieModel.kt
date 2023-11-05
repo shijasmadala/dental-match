@@ -20,7 +20,7 @@ class UploadImageVieModel @Inject constructor(private val uploadImageRepository:
 
     fun addColor(colorCodeModel: ColorCodeModel) = viewModelScope.launch(Dispatchers.IO) {
         when {
-            colorCodeModel.colorCode.isNullOrBlank() -> {
+            colorCodeModel.teethCode.isNullOrBlank() -> {
                 _addImageState.send(UploadImageState.Error("Please enter the code"))
             }
 

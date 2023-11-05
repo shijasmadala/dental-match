@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.dentalmatch.R
 import com.example.dentalmatch.common.util.Constants
-import com.example.dentalmatch.common.util.toHexColor
 import com.example.dentalmatch.databinding.FragmentUploadImageBinding
 import com.example.dentalmatch.upload_image.domain.ColorCodeModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +60,7 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
             submit.setOnClickListener {
                 selectedColor?.let { color ->
                     val colorCodeModel = ColorCodeModel(
-                        colorCode = imageCodeEdt.text.toString(),
+                        teethCode = imageCodeEdt.text.toString(),
                         color = color,
                         id = 0
                     )
