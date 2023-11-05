@@ -2,6 +2,7 @@ package com.example.dentalmatch.home.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.dentalmatch.R
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
+import com.example.dentalmatch.common.util.Constants
 import com.example.dentalmatch.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -69,6 +71,22 @@ class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPati
                         null
                     )
                 )
+            }
+
+            menuPopUp.setOnClickListener {
+                val popupMenu = PopupMenu(requireContext(), binding.menuPopUp)
+                popupMenu.menuInflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.uploadImage -> {
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToUploadImageFragment()
+                            )
+                        }
+                    }
+                    true
+                }
+                popupMenu.show()
             }
         }
     }

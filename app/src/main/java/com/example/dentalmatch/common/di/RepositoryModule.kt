@@ -4,6 +4,8 @@ import com.example.dentalmatch.add_patient.data.repository.AddPatientRepositoryI
 import com.example.dentalmatch.add_patient.domain.repository.AddPatientRepository
 import com.example.dentalmatch.home.data.repository.HomeRepositoryImpl
 import com.example.dentalmatch.home.domain.repository.HomeRepository
+import com.example.dentalmatch.upload_image.data.repository.UploadImageRepositoryImpl
+import com.example.dentalmatch.upload_image.domain.UploadImageRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindHomeRepository(homeRepositoryImpl: HomeRepositoryImpl) : HomeRepository
+
+    @Binds
+    abstract fun bindUploadImageRepository(uploadImageRepositoryImpl: UploadImageRepositoryImpl) : UploadImageRepository
 }

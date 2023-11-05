@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.dentalmatch.add_patient.data.source.PatientDao
 import com.example.dentalmatch.common.database.DentalDataBase
+import com.example.dentalmatch.upload_image.data.source.ColorCodeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +25,11 @@ class AppModule {
     @Singleton
     fun providePatientDao(dentalDataBase: DentalDataBase) : PatientDao{
         return dentalDataBase.patientDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideColorDao(dentalDataBase: DentalDataBase) : ColorCodeDao{
+        return dentalDataBase.colorCodeDao
     }
 }

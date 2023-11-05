@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".upload_image.presentation.UploadImageFragment">
+
+    <Toolbar
+        android:id="@+id/uploadImageScreen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:navigationIcon="@drawable/ic_back"
+        android:title="@string/upload_image"
+        android:layout_marginHorizontal="@dimen/_16dp"
+        android:layout_marginVertical="@dimen/_16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/imageCodeLay"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginRight="@dimen/_16dp"
+        android:hint="@string/image_code"
+        app:layout_constraintEnd_toEndOf="@+id/uploadImageScreen"
+        app:layout_constraintStart_toStartOf="@+id/uploadImageScreen"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageScreen">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/imageCodeEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/imageColorLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginRight="@dimen/_16dp"
+        app:strokeColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/imageCodeLay"
+        app:layout_constraintStart_toStartOf="@+id/imageCodeLay"
+        app:layout_constraintTop_toBottomOf="@+id/imageCodeLay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageColorEdt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:backgroundTint="@color/red_500"
+        android:text="@string/upload_image"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/imageColorLay"
+        app:layout_constraintTop_toBottomOf="@+id/imageColorLay" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
