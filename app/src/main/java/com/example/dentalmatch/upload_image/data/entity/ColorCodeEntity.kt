@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class ColorCodeEntity(
     @PrimaryKey(autoGenerate = true)
     val id : Int,
-    val colorCode : String,
+    val teethCode : String,
     val color : Int
 )

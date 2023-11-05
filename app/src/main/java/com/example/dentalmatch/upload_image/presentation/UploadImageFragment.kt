@@ -61,7 +61,7 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
             submit.setOnClickListener {
                 selectedColor?.let { color ->
                     val colorCodeModel = ColorCodeModel(
-                        colorCode = imageCodeEdt.text.toString(),
+                        teethCode = imageCodeEdt.text.toString(),
                         color = color,
                         id = 0
                     )
