@@ -19,6 +19,7 @@ import com.example.dentalmatch.common.util.Constants.FROM_PATIENT
 import com.example.dentalmatch.common.util.Constants.TEST_TAG
 import com.example.dentalmatch.common.util.toHexColor
 import com.example.dentalmatch.databinding.FragmentAddPatientBinding
+import com.example.dentalmatch.image_handling.presentation.color_matching.ColorMatcherDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -140,6 +141,10 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
             if (selectedColor != null) {
                 Log.d(TEST_TAG, "Returned color in int: $selectedColor")
                 binding.uploadToothImgEdt.setText(selectedColor.toHexColor())
+
+                // Show the matcher dialog
+                val dialog = ColorMatcherDialog(selectedColor)
+                dialog.show(requireActivity().supportFragmentManager, ColorMatcherDialog.TAG)
             }
         }
     }
