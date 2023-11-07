@@ -35,15 +35,14 @@
             android:id="@+id/gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_marginTop="@dimen/_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/patientName"
             app:layout_constraintStart_toStartOf="@+id/patientName"
             app:layout_constraintTop_toBottomOf="@+id/patientName"
-            tools:text="Male" />
+            tools:text="Female" />
 
         <TextView
             android:id="@+id/toothCode"
