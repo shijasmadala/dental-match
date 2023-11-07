@@ -127,4 +127,7 @@ dependencies {
 
     // Skydoves color picker
     implementation("com.github.skydoves:colorpickerpreference:2.0.6")
+
+    // Lottie
+    implementation("com.airbnb.android:lottie:5.0.3")
 }

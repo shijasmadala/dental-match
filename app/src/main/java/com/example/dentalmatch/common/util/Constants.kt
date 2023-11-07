@@ -9,4 +9,6 @@ object Constants {
     const val CONST_SELECTED_COLOR = "selected_color"
     const val FROM_PATIENT = "patient"
     const val FROM_UPLOAD = "upload"
+
+    const val EMPTY_COLORS = "No colors found to find a match!"
 }

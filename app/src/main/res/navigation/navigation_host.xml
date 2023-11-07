@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/imageCaptureFragment"
-        android:name="com.example.dentalmatch.image_handling.presentation.ImageCaptureFragment"
+        android:name="com.example.dentalmatch.image_handling.presentation.image_capture.ImageCaptureFragment"
         android:label="fragment_image_capture"
         tools:layout="@layout/fragment_image_capture" >
         <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/colorMatchingFragment"
-        android:name="com.example.dentalmatch.image_handling.presentation.ColorPickerFragment"
+        android:name="com.example.dentalmatch.image_handling.presentation.color_picker.ColorPickerFragment"
         android:label="fragment_color_matching"
         tools:layout="@layout/fragment_color_picker" >
         <!--<argument android:name="capturedImageFile"
