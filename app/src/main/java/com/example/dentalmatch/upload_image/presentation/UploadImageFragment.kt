@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -87,8 +88,12 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
                 if (color != null) {
                     Log.d(Constants.TEST_TAG, "Returned color in int: $selectedColor")
                     selectedColor = color
-                    binding.submit.isEnabled = true
-                    binding.imageColorLay.setCardBackgroundColor(color)
+                    binding.apply {
+                        submit.isEnabled = true
+                        imageColorLay.setCardBackgroundColor(color)
+                        cameraHintTxt.isVisible = false
+                    }
+
                 }
             }
     }
