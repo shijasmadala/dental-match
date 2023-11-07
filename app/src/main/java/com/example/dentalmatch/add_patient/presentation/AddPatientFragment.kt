@@ -140,10 +140,15 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
         ) { selectedColor ->
             if (selectedColor != null) {
                 Log.d(TEST_TAG, "Returned color in int: $selectedColor")
-                binding.uploadToothImgEdt.setText(selectedColor.toHexColor())
 
                 // Show the matcher dialog
-                val dialog = ColorMatcherDialog(selectedColor)
+                val dialog = ColorMatcherDialog(selectedColor,
+                    object: ColorMatcherDialog.MatchListener {
+                        override fun onColorMatched(matchedCode: String) {
+                            binding.uploadToothImgEdt.setText(matchedCode)
+                        }
+                    }
+                )
                 dialog.show(requireActivity().supportFragmentManager, ColorMatcherDialog.TAG)
             }
         }

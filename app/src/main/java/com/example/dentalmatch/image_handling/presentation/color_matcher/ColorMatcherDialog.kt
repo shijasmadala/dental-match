@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,15 +19,27 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.dentalmatch.databinding.DialogColorMatcherBinding
 import com.example.dentalmatch.upload_image.domain.ColorCodeModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.math.abs
+import kotlin.math.pow
+import kotlin.math.sqrt
 
-class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
+@AndroidEntryPoint
+class ColorMatcherDialog(
+    private val selectedColor: Int,
+    private val listener: MatchListener
+) : DialogFragment() {
 
     private lateinit var binding: DialogColorMatcherBinding
     private val viewModel by viewModels<ColorMatcherViewModel>()
     private var showSuccessGroup: Boolean? = null
-    private var matchingColor: Int? = null
+    private var matchingColorData: ColorCodeModel? = null
+
+    interface MatchListener {
+        fun onColorMatched(matchedCode: String)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +63,7 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
     }
 
     private fun init() {
-//        binding.tvLoadingText.text = "Selected color: $selectedColor"
+        binding.cardSelectedColor.setCardBackgroundColor(selectedColor)
     }
 
     private fun setListeners() = binding.apply {
@@ -62,13 +75,21 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
                     if (flag)
                         groupData.isVisible = true
                     else {
-                        // TODO: Show the error dialog here
+                        groupError.isVisible = true
+                        lottieError.playAnimation()
                     }
                 }
             }
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
         })
+
+        binding.btnContinue.setOnClickListener {
+            matchingColorData?.let { colorData ->
+                listener.onColorMatched(colorData.teethCode)
+                dismiss()
+            }
+        }
     }
 
     private fun observeState() {
@@ -77,7 +98,7 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
                 viewModel.state.collectLatest {
                     when (it) {
                         is ColorMatcherState.SuccessColorsList -> handleColorsListSuccess(it.colorsList)
-                        is ColorMatcherState.Error -> handleColorsListError(it.message)
+                        is ColorMatcherState.Error -> handleColorsListError()
                         else -> Unit
                     }
                 }
@@ -87,10 +108,52 @@ class ColorMatcherDialog(private val selectedColor: Int) : DialogFragment() {
 
     private fun handleColorsListSuccess(colorsList: List<ColorCodeModel>) {
         showSuccessGroup = true
+        matchingColorData = findMatchingColor(colorsList)
+
+        matchingColorData?.let { matchedColorData ->
+            binding.apply {
+                tvMatchedCode.text = matchedColorData.teethCode
+                cardMatchedColor.setCardBackgroundColor(matchedColorData.color)
+            }
+        }
     }
 
-    private fun handleColorsListError(errorMessage: String) {
+    private fun handleColorsListError() {
         showSuccessGroup = false
+    }
+
+    private fun findMatchingColor(colorsList: List<ColorCodeModel>): ColorCodeModel? {
+        val selectedR = Color.red(selectedColor)
+        val selectedG = Color.green(selectedColor)
+        val selectedB = Color.blue(selectedColor)
+
+        var minColorDifference: Double? = null
+        var matchingColorData: ColorCodeModel? = null
+
+        colorsList.map { colorData ->
+            val diff = sqrt(
+                (selectedR - Color.red(colorData.color)).toDouble().pow(2.0)
+                        + (selectedG - Color.green(colorData.color)).toDouble().pow(2.0)
+                        + (selectedB - Color.blue(colorData.color)).toDouble().pow(2.0)
+            )
+            val newColorDifference = abs(diff)
+
+            Log.d("TEST111", "${colorData.teethCode}, $newColorDifference")
+
+            if (minColorDifference == null) {
+                minColorDifference = newColorDifference
+                matchingColorData = colorData
+            } else if (newColorDifference < minColorDifference!!) {
+                minColorDifference = newColorDifference
+                matchingColorData = colorData
+            }
+
+            /*if (oldColorDifference != null && newColorDifference < oldColorDifference!!)
+                matchingColorData = colorData
+
+            oldColorDifference = newColorDifference*/
+        }
+        return matchingColorData
     }
 
     private fun customizeDialog(dialog: Dialog) {
