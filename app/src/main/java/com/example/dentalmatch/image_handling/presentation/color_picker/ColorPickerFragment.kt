@@ -1,4 +1,4 @@
-package com.example.dentalmatch.image_handling.presentation
+package com.example.dentalmatch.image_handling.presentation.color_picker
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
