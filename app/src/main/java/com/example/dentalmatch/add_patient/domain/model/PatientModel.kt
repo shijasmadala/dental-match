@@ -9,5 +9,10 @@ data class PatientModel(
     val patientName : String?,
     val age : String?,
     val gender : String?,
-    val toothCode : String?
-) : Parcelable
+    val toothCode : String?,
+    val toothNumber : Int?
+) : Parcelable {
+    override fun toString(): String {
+        return " Patient Name:$patientName\n Age:$age\n Gender:$gender\n Tooth Code:$toothCode\n Tooth Number:$toothNumber"
+    }
+}

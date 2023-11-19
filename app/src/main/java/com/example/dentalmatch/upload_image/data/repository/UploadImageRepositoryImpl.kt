@@ -31,4 +31,10 @@ class UploadImageRepositoryImpl @Inject constructor(
             emit(Resource.Success(colorsList))
         } else emit(Resource.Error(EMPTY_COLORS))
     }
+
+    override suspend fun deleteColor(colorCodeModel: ColorCodeModel) {
+        kotlin.runCatching {
+            colorCodeDao.deleteColor(colorCodeModel.toEntity())
+        }
+    }
 }

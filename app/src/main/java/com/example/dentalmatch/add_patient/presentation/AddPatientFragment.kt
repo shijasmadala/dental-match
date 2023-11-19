@@ -50,7 +50,8 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                         patientName = patientNameEdt.text.toString(),
                         age = patientAgeEdt.text.toString(),
                         gender = patientGenderEdt.text.toString(),
-                        toothCode = uploadToothImgEdt.text.toString()
+                        toothCode = uploadToothImgEdt.text.toString(),
+                        toothNumber = if (toothNumberEdt.text.toString().isBlank()) 0 else toothNumberEdt.text.toString().toInt()
                     )
                     viewModel.updatePatient(patientModel)
                 } else {
@@ -59,7 +60,8 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                         patientName = patientNameEdt.text.toString(),
                         age = patientAgeEdt.text.toString(),
                         gender = patientGenderEdt.text.toString(),
-                        toothCode = uploadToothImgEdt.text.toString()
+                        toothCode = uploadToothImgEdt.text.toString(),
+                        toothNumber = if (toothNumberEdt.text.toString().isBlank()) 0 else toothNumberEdt.text.toString().toInt()
                     )
                     viewModel.addPatient(patientModel)
                 }
@@ -116,6 +118,7 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                                         false
                                     )
                                     uploadToothImgEdt.setText(it.patientModel.toothCode.toString())
+                                    toothNumberEdt.setText(it.patientModel.toothNumber.toString())
                                 }
                             }
                         }

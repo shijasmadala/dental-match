@@ -1,6 +1,7 @@
 package com.example.dentalmatch.upload_image.data.source
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,4 +15,7 @@ interface ColorCodeDao {
 
     @Query("SELECT * FROM ColorCodeEntity")
     fun getAllColors(): Flow<List<ColorCodeEntity>>
+
+    @Delete
+    fun deleteColor(colorCodeEntity: ColorCodeEntity)
 }
