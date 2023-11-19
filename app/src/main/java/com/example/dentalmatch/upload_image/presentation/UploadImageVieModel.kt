@@ -3,6 +3,7 @@ package com.example.dentalmatch.upload_image.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dentalmatch.common.util.Resource
+import com.example.dentalmatch.home.presentation.HomeState
 import com.example.dentalmatch.upload_image.domain.ColorCodeModel
 import com.example.dentalmatch.upload_image.domain.UploadImageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -52,7 +53,7 @@ class UploadImageVieModel @Inject constructor(private val uploadImageRepository:
         }
     }
 
-    private fun getAllColorsList() = viewModelScope.launch {
+    fun getAllColorsList() = viewModelScope.launch {
         uploadImageRepository.getAllColors().collectLatest {
             when (it) {
                 is Resource.Success -> _state.emit(
@@ -69,6 +70,8 @@ class UploadImageVieModel @Inject constructor(private val uploadImageRepository:
     fun deleteColor(colorCodeModel: ColorCodeModel) = viewModelScope.launch(Dispatchers.IO) {
         kotlin.runCatching {
          uploadImageRepository.deleteColor(colorCodeModel)
+        }.onSuccess {
+            _state.emit(UploadImageState.DeleteColor("Deleted"))
         }
     }
 

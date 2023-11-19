@@ -13,6 +13,7 @@ class PatientListAdapter(private val listener: OnPatientClick) : ListAdapter<Pat
     interface OnPatientClick{
         fun updatePatient(patientModel: PatientModel)
         fun deletePatient(patientModel: PatientModel)
+        fun shareData(patientModel: PatientModel)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = ItemPatientBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -37,6 +38,9 @@ class PatientListAdapter(private val listener: OnPatientClick) : ListAdapter<Pat
                 }
                 deletePatient.setOnClickListener {
                     listener.deletePatient(patientModel)
+                }
+                shareData.setOnClickListener {
+                    listener.shareData(patientModel)
                 }
             }
         }

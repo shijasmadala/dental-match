@@ -1,5 +1,6 @@
 package com.example.dentalmatch.upload_image.presentation
 
+import com.example.dentalmatch.home.presentation.HomeState
 import com.example.dentalmatch.image_handling.presentation.color_matcher.ColorMatcherState
 import com.example.dentalmatch.upload_image.domain.ColorCodeModel
 
@@ -13,6 +14,8 @@ sealed class UploadImageState {
         val message: String,
 
         ) : UploadImageState()
+
+    data class DeleteColor(val message: String) : UploadImageState()
 
     data class SuccessColorsList(val colorsList: List<ColorCodeModel>) : UploadImageState()
 

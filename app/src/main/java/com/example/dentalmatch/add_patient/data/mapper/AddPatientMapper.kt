@@ -5,12 +5,12 @@ import com.example.dentalmatch.add_patient.domain.model.PatientModel
 
 fun PatientEntity.toPatientModel() :PatientModel{
     return PatientModel(
-        id = id,patientName = patientName, age = age, gender = gender, toothCode = toothCode
+        id = id,patientName = patientName, age = age, gender = gender, toothCode = toothCode, toothNumber = toothNumber
     )
 }
 
 fun PatientModel.toPatientEntity() :PatientEntity{
     return PatientEntity(
-        id = id,patientName = patientName, age = age, gender = gender, toothCode = toothCode
+        id = id,patientName = patientName, age = age, gender = gender, toothCode = toothCode, toothNumber = toothNumber
     )
 }

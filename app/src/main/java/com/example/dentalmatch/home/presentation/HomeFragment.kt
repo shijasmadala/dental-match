@@ -1,5 +1,6 @@
 package com.example.dentalmatch.home.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
@@ -12,11 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.dentalmatch.R
 import com.example.dentalmatch.add_patient.domain.model.PatientModel
-import com.example.dentalmatch.common.util.Constants
 import com.example.dentalmatch.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPatientClick {
@@ -107,5 +108,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPati
 
     override fun deletePatient(patientModel: PatientModel) {
         viewModel.deletePatient(patientModel)
+    }
+
+    override fun shareData(patientModel: PatientModel) {
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEND
+        sendIntent.putExtra(Intent.EXTRA_TEXT, patientModel.toString())
+        sendIntent.type = "text/plain"
+        startActivity(sendIntent)
     }
 }

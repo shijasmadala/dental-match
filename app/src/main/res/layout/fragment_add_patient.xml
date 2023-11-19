@@ -83,9 +83,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16dp"
         android:hint="@string/upload_image"
-        app:layout_constraintEnd_toEndOf="@+id/patientGenderLay"
-        app:layout_constraintStart_toStartOf="@+id/patientGenderLay"
-        app:layout_constraintTop_toBottomOf="@+id/patientGenderLay"
+        app:layout_constraintEnd_toEndOf="@+id/toothNumberLay"
+        app:layout_constraintStart_toStartOf="@+id/toothNumberLay"
+        app:layout_constraintTop_toBottomOf="@+id/toothNumberLay"
         app:startIconDrawable="@drawable/file_upload_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -95,6 +95,29 @@
             android:focusable="false"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/toothNumberLay"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:hint="@string/tooth_number"
+        app:layout_constraintEnd_toEndOf="@+id/patientGenderLay"
+        app:layout_constraintStart_toStartOf="@+id/patientGenderLay"
+        app:layout_constraintTop_toBottomOf="@+id/patientGenderLay">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/toothNumberEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submitPatient"

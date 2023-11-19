@@ -61,6 +61,11 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image),ImageUpload
                             Log.d("hhh",imageUploadAdapter.toString())
                         }
 
+                        is UploadImageState.DeleteColor -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            viewModel.getAllColorsList()
+                        }
+
                         else -> {}
                     }
                 }
@@ -86,6 +91,9 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image),ImageUpload
                         from = Constants.FROM_UPLOAD
                     )
                 )
+            }
+            uploadImageScreen.setNavigationOnClickListener {
+                findNavController().navigateUp()
             }
         }
     }
