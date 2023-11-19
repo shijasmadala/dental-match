@@ -14,16 +14,18 @@ import androidx.navigation.fragment.findNavController
 import com.example.dentalmatch.R
 import com.example.dentalmatch.common.util.Constants
 import com.example.dentalmatch.databinding.FragmentUploadImageBinding
+import com.example.dentalmatch.home.presentation.PatientListAdapter
 import com.example.dentalmatch.upload_image.domain.ColorCodeModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
+class UploadImageFragment : Fragment(R.layout.fragment_upload_image),ImageUploadAdapter.ImageUploadClick {
 
     private lateinit var binding: FragmentUploadImageBinding
     private val viewModel by viewModels<UploadImageVieModel>()
+    private val imageUploadAdapter by lazy { ImageUploadAdapter(this) }
     private var selectedColor: Int? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,12 +34,15 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
         observeUploadImageState()
         setListeners()
         observeCapturedImage()
+        binding.apply {
+            recyclerView.adapter = imageUploadAdapter
+        }
     }
 
     private fun observeUploadImageState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.addImageState.collectLatest {
+                viewModel.state.collectLatest {
                     when (it) {
 
                         is UploadImageState.Error -> {
@@ -49,6 +54,11 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
                         is UploadImageState.UploadImageSuccess -> {
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                             findNavController().navigateUp()
+                        }
+
+                        is UploadImageState.SuccessColorsList -> {
+                            imageUploadAdapter.submitList(it.colorsList)
+                            Log.d("hhh",imageUploadAdapter.toString())
                         }
 
                         else -> {}
@@ -96,6 +106,10 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image) {
 
                 }
             }
+    }
+
+    override fun deleteUploadedColor(colorCodeModel: ColorCodeModel) {
+        viewModel.deleteColor(colorCodeModel)
     }
 
 }

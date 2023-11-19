@@ -84,5 +84,18 @@
         app:layout_constraintEnd_toEndOf="@+id/imageColorLay"
         app:layout_constraintTop_toBottomOf="@+id/imageColorLay" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        tools:listitem="@layout/item_image_upload_"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@+id/imageColorLay"
+        app:layout_constraintStart_toStartOf="@+id/imageColorLay"
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

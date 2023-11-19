@@ -9,4 +9,6 @@ interface UploadImageRepository {
 
     fun getAllColors(): Flow<Resource<List<ColorCodeModel>>>
 
+    suspend fun deleteColor(colorCodeModel: ColorCodeModel)
+
 }
