@@ -43,6 +43,10 @@ class AddPatientViewModel @Inject constructor(
                 _addPatientState.send(AddPatientState.Error("Please select the gender"))
             }
 
+            patientModel.toothNumber == 0 -> {
+                _addPatientState.send(AddPatientState.Error("Please enter the tooth no"))
+            }
+
             patientModel.toothCode.isNullOrEmpty() -> {
                 _addPatientState.send(AddPatientState.Error("Please upload the tooth code"))
             }
@@ -71,6 +75,10 @@ class AddPatientViewModel @Inject constructor(
 
             patientModel.gender.isNullOrEmpty() -> {
                 _addPatientState.send(AddPatientState.Error("Please select the gender"))
+            }
+
+            patientModel.toothNumber == 0 -> {
+                _addPatientState.send(AddPatientState.Error("Please enter the tooth no"))
             }
 
             patientModel.toothCode.isNullOrEmpty() -> {
