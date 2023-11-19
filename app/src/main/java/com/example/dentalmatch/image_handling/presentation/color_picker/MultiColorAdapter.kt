@@ -15,15 +15,15 @@ class MultiColorAdapter : ListAdapter<Int, RecyclerView.ViewHolder>(MultiColorDi
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MultiColorViewHolder).bind(getItem(position))
+        (holder as MultiColorViewHolder).bind(getItem(position), position)
     }
 
     inner class MultiColorViewHolder(private val binding: ItemMultipleColorsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(color: Int) = binding.apply {
+        fun bind(color: Int, position: Int) = binding.apply {
             colorView.setBackgroundColor(color)
-
-            // TODO: Handle the click if needed to delete
+            val count = position + 1
+            tvCount.text = count.toString()
         }
     }
 }
