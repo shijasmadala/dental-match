@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_back"
-            app:title="@string/upload_image" />
+            app:title="@string/upload_shade" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

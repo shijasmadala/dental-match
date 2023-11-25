@@ -8,6 +8,7 @@
     <string name="patient_name">Patient Name</string>
     <string name="age">Age</string>
     <string name="upload_image">Upload Image</string>
+    <string name="upload_shade">Upload Shade</string>
     <string name="submit">Submit</string>
     <string name="image_code">Image Code</string>
     <string name="tooth_number">Tooth Number</string>
