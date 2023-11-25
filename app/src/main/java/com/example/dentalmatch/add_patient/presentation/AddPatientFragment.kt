@@ -74,6 +74,10 @@ class AddPatientFragment : Fragment(R.layout.fragment_add_patient) {
                     )
                 )
             }
+
+            toolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 

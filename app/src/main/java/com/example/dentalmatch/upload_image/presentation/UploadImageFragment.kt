@@ -92,7 +92,7 @@ class UploadImageFragment : Fragment(R.layout.fragment_upload_image),ImageUpload
                     )
                 )
             }
-            uploadImageScreen.setNavigationOnClickListener {
+            toolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
         }
