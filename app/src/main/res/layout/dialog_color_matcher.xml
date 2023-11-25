@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -44,7 +45,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottieLoader" />
+                app:layout_constraintTop_toBottomOf="@id/lottieLoader"
+                tools:ignore="HardcodedText" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/groupLoader"
@@ -77,7 +79,8 @@
                 app:layout_constraintBottom_toTopOf="@id/tvErrorDescText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottieError" />
+                app:layout_constraintTop_toBottomOf="@id/lottieError"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvErrorDescText"
@@ -90,7 +93,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvErrorTitleText" />
+                app:layout_constraintTop_toBottomOf="@id/tvErrorTitleText"
+                tools:ignore="HardcodedText" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/groupError"
@@ -124,18 +128,20 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvMatchedCodeLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Matched code"
+                android:text="Matched shade code"
                 android:textColor="@color/grey_700"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/tvMatchedCode"
                 app:layout_constraintStart_toStartOf="@id/tvMatchedCode"
-                app:layout_constraintTop_toBottomOf="@id/tvMatchedCode" />
+                app:layout_constraintTop_toBottomOf="@id/tvMatchedCode"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardSelectedColor"
@@ -153,12 +159,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
-                android:text="Selected color"
+                android:text="Tooth color"
                 android:textColor="@color/grey_700"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardSelectedColor" />
+                app:layout_constraintTop_toBottomOf="@id/cardSelectedColor"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardMatchedColor"
@@ -176,12 +183,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
-                android:text="Matched color"
+                android:text="Matched shade"
                 android:textColor="@color/grey_700"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/cardMatchedColor" />
+                app:layout_constraintTop_toBottomOf="@id/cardMatchedColor"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinue"
@@ -193,7 +201,8 @@
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSelectedColorLabel" />
+                app:layout_constraintTop_toBottomOf="@id/tvSelectedColorLabel"
+                tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

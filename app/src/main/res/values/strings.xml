@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">DentalMatch</string>
+    <string name="app_name">Dental Shader</string>
+    <string name="app_desc">Find the best matching shades for your patient\'s teeth</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_patient">Add Patient</string>
-    <string name="patient_list">Patient List</string>
+    <string name="patient_list">Patients List</string>
     <string name="patient_name">Patient Name</string>
     <string name="age">Age</string>
     <string name="upload_image">Upload Image</string>

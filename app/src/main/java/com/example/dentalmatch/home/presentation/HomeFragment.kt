@@ -74,20 +74,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), PatientListAdapter.OnPati
                 )
             }
 
-            menuPopUp.setOnClickListener {
-                val popupMenu = PopupMenu(requireContext(), binding.menuPopUp)
-                popupMenu.menuInflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
-                popupMenu.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.uploadImage -> {
-                            findNavController().navigate(
-                                HomeFragmentDirections.actionHomeFragmentToUploadImageFragment()
-                            )
-                        }
-                    }
-                    true
-                }
-                popupMenu.show()
+            toolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
             }
         }
     }
