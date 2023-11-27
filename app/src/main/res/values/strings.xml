@@ -12,4 +12,5 @@
     <string name="submit">Submit</string>
     <string name="image_code">Image Code</string>
     <string name="tooth_number">Tooth Number</string>
+    <string name="click_here_to_open_camera">Click here to open camera</string>
 </resources>

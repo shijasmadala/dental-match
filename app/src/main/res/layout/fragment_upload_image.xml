@@ -31,7 +31,7 @@
         android:layout_marginLeft="@dimen/_16dp"
         android:layout_marginTop="@dimen/_16dp"
         android:layout_marginRight="@dimen/_16dp"
-        android:hint="@string/image_code"
+        android:hint="Shade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar">
@@ -67,7 +67,7 @@
                 android:id="@+id/cameraHintTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Click here to open camera"
+                android:text="@string/click_here_to_open_camera"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
